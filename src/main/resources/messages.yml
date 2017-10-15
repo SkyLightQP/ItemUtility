@@ -1,0 +1,7 @@
+messages:
+  done_set_name: "§f아이템 이름이 변경되었습니다."
+  done_add_lore: "§f아이템 설명이 추가되었습니다."
+  done_del_lore: "§f아이템 설명이 제거되었습니다."
+  done_set_lore: "§f아이템 설명이 설정되었습니다."
+  not_handing_item: "§f들고 있는 아이템이 없습니다."
+  invaild_value: "§f올바르지 않은 값입니다."
