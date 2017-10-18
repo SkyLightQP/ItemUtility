@@ -1,17 +1,11 @@
 package kr.kgaons.itemutility.commands;
 
-import com.google.gson.Gson;
+import kr.kgaons.itemutility.item.ItemHelper;
 import kr.kgaons.itemutility.ItemUtility;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 
 public class MainCommand implements CommandExecutor {
     @Override
@@ -21,6 +15,7 @@ public class MainCommand implements CommandExecutor {
             if(args.length > 0){
 
             }
+            else sendHelpMessage(p);
         }
         return false;
     }
@@ -35,5 +30,12 @@ public class MainCommand implements CommandExecutor {
         p.sendMessage(ItemUtility.getPrefix() + "/iu loreset <line> <text>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu addhand <ItemName>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu list");
+    }
+
+    private void createItem(Player p, String itemname){
+        if(!ItemHelper.isDuplicated(itemname)){
+            ItemHelper.createItem(itemname);
+        }
+        else p.sendMessage(ItemUtility.getInstance().duplicated_item);
     }
 }

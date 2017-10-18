@@ -1,7 +1,0 @@
-messages:
-  DONE_SET_NAME: "§f아이템 이름이 변경되었습니다."
-  DONE_ADD_LORE: "§f아이템 설명이 추가되었습니다."
-  DONE_DEL_LORE: "§f아이템 설명이 제거되었습니다."
-  DONE_SET_LORE: "§f아이템 설명이 설정되었습니다."
-  NOT_HANDING_ITEM: "§f들고 있는 아이템이 없습니다."
-  INVAILD_VALUE: "§f올바르지 않은 값입니다."

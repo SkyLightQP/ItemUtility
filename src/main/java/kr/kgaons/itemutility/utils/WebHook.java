@@ -43,9 +43,9 @@ public class WebHook {
             return false;
         }
     }
-    public static boolean checkUtilVersion(String version){
+    public static boolean checkUtilVersion(){
         String url = "https://raw.githubusercontent.com/SkyLightQP/skylightqp.github.io/master/MCPluginUtil.txt";
-        if (getVersion(url).get(0).contains(version)) {
+        if (getVersion(url).get(0).contains(Util.UTIL_VERSION)) {
             Util.sendConsoleMessage("플러그인 구성요소가 최신버전입니다.");
             return true;
         } else {

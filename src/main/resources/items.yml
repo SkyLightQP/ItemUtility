@@ -1,0 +1,7 @@
+items:
+  'HelloWorld':
+    item: '1:0'
+    display: '&fHello, World!'
+    lore:
+    - '&fHello'
+    - '&World'
