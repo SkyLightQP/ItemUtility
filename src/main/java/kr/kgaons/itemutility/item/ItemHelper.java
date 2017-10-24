@@ -36,12 +36,12 @@ public class ItemHelper {
 
     // itemname 객체가 이미 있는가?
     public static boolean isDuplicated(String itemname){
-        return ItemUtility.getInstance().items.get("items." + itemname) != null;
+        return ItemUtility.getConfiguration().items.get("items." + itemname) != null;
     }
 
     public static void createItem(String itemname){
-        ItemUtility.getInstance().items.set("items." + itemname + ".item", "1:0");
-        ItemUtility.getInstance().items.set("items." + itemname + ".display", "&fHello, World");
-        ItemUtility.getInstance().items.set("items." + itemname + ".lore", Arrays.asList("&fHello","&fWorld"));
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".item", "1:0");
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".display", "&fHello, World");
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".lore", Arrays.asList("&fHello","&fWorld"));
     }
 }

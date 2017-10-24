@@ -25,11 +25,7 @@ public class Config {
     public String invaild_value;
     public String duplicated_item;
 
-    public Config(){
-        init();
-    }
-
-    public void init(){
+    public Config() {
         if (config == null) {
             configfile = new File(ItemUtility.getInstance().getDataFolder(), "config.yml");
         }

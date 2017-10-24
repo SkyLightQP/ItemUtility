@@ -4,18 +4,13 @@ import kr.kgaons.itemutility.commands.MainCommand;
 import kr.kgaons.itemutility.utils.Util;
 import kr.kgaons.itemutility.utils.WebHook;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 public class ItemUtility extends JavaPlugin {
     final String VERSION = getDescription().getVersion();
     final String PREFIX = "§6§l[ItemUtility] §f";
     public static ItemUtility INSTANCE = null;
-
-    public static Config config = null;
+    public Config config = null;
 
     @Override
     public void onEnable() {
@@ -36,6 +31,8 @@ public class ItemUtility extends JavaPlugin {
     public static String getPrefix() {
         return getInstance().PREFIX;
     }
+
+    public static Config getConfiguration() { return getInstance().config; }
 
     @Override
     public void onDisable() {
