@@ -1,0 +1,6 @@
+# ItemUtility Config
+
+# 아이템 설정 파일을 자동으로 저장할지에 대한 유무입니다.
+# 15분 간격으로 자동 저장됩니다.
+# true : 허용 / false : 비허용
+autosave: true

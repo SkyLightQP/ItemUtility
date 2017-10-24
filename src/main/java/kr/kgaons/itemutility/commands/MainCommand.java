@@ -1,5 +1,6 @@
 package kr.kgaons.itemutility.commands;
 
+import kr.kgaons.itemutility.Config;
 import kr.kgaons.itemutility.item.ItemHelper;
 import kr.kgaons.itemutility.ItemUtility;
 import org.bukkit.command.Command;
@@ -13,7 +14,7 @@ public class MainCommand implements CommandExecutor {
         if(cs instanceof Player){
             Player p = (Player) cs;
             if(args.length > 0){
-
+                p.sendMessage(ItemUtility.config.duplicated_item);
             }
             else sendHelpMessage(p);
         }
@@ -36,6 +37,6 @@ public class MainCommand implements CommandExecutor {
         if(!ItemHelper.isDuplicated(itemname)){
             ItemHelper.createItem(itemname);
         }
-        else p.sendMessage(ItemUtility.getInstance().duplicated_item);
+        else p.sendMessage(ItemUtility.config.duplicated_item);
     }
 }
