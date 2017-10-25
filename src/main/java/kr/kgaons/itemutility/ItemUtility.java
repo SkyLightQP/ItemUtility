@@ -3,7 +3,6 @@ package kr.kgaons.itemutility;
 import kr.kgaons.itemutility.commands.MainCommand;
 import kr.kgaons.itemutility.utils.Util;
 import kr.kgaons.itemutility.utils.WebHook;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ItemUtility extends JavaPlugin {
@@ -21,7 +20,6 @@ public class ItemUtility extends JavaPlugin {
         getCommand("iu").setExecutor(new MainCommand());
 
         config = new Config();
-        Bukkit.getLogger().info("[ItemUtility] Config has been load.");
     }
 
     public static ItemUtility getInstance() {

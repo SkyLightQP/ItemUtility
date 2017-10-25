@@ -6,3 +6,4 @@ messages:
   not_handing_item: "§f들고 있는 아이템이 없습니다."
   invaild_value: "§f올바르지 않은 값입니다."
   duplicated_item: "§f이미 존재하는 아이템입니다."
+  done_create_item: "§f아이템이 만들어졌습니다."

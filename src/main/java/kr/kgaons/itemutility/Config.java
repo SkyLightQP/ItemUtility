@@ -1,5 +1,7 @@
 package kr.kgaons.itemutility;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -8,56 +10,60 @@ import java.io.IOException;
 
 public class Config {
 
-    public File configfile;
-    public FileConfiguration config;
-    public boolean autosave;
+    public File configfile = new File(ItemUtility.getInstance().getDataFolder(), "config.yml");
+    public FileConfiguration config = null;
+    public boolean autosave = true;
 
-    public FileConfiguration items;
-    public File itemsfile;
+    public FileConfiguration items = null;
+    public File itemsfile = new File(ItemUtility.getInstance().getDataFolder(), "items.yml");
 
-    public File messagesfile;
-    public FileConfiguration messages;
-    public String done_set_name;
-    public String done_add_lore;
-    public String done_del_lore;
-    public String done_set_lore;
-    public String not_handing_item;
-    public String invaild_value;
-    public String duplicated_item;
+    public File messagesfile = new File(ItemUtility.getInstance().getDataFolder(), "messages.yml");
+    ;
+    public FileConfiguration messages = null;
+    public String done_set_name = null;
+    public String done_add_lore = null;
+    public String done_del_lore = null;
+    public String done_set_lore = null;
+    public String not_handing_item = null;
+    public String invaild_value = null;
+    public String duplicated_item = null;
+    public String done_create_item = null;
 
     public Config() {
-        if (config == null) {
-            configfile = new File(ItemUtility.getInstance().getDataFolder(), "config.yml");
-        }
-        if (messages == null) {
-            messagesfile = new File(ItemUtility.getInstance().getDataFolder(), "messages.yml");
-        }
-        if (items == null) {
-            itemsfile = new File(ItemUtility.getInstance().getDataFolder(), "items.yml");
-        }
-        if (!configfile.exists()) {
-            ItemUtility.getInstance().saveResource("config.yml", false);
-            config = YamlConfiguration.loadConfiguration(configfile);
-            autosave  = config.getBoolean("autosave");
-        }
-        if (!messagesfile.exists()) {
-            ItemUtility.getInstance().saveResource("messages.yml", false);
-            messages = YamlConfiguration.loadConfiguration(messagesfile);
-            done_set_name = messages.getString("messages.done_set_name");
-            done_add_lore = messages.getString("messages.done_add_lore");
-            done_set_lore = messages.getString("messages.done_set_lore");
-            done_del_lore = messages.getString("messages.done_del_lore");
-            invaild_value = messages.getString("messages.invaild_value");
-            not_handing_item = messages.getString("messages.not_handing_item");
-            duplicated_item = messages.getString("messages.duplicated_item");
-        }
-        if (!itemsfile.exists()) {
-            ItemUtility.getInstance().saveResource("items.yml", false);
-            items = YamlConfiguration.loadConfiguration(itemsfile);
+        config = YamlConfiguration.loadConfiguration(configfile);
+        messages = YamlConfiguration.loadConfiguration(messagesfile);
+        items = YamlConfiguration.loadConfiguration(itemsfile);
+
+        ItemUtility.getInstance().saveDefaultConfig();
+        ItemUtility.getInstance().saveResource("config.yml", false);
+        load(config, configfile);
+        ItemUtility.getInstance().saveResource("messages.yml", false);
+        load(messages, messagesfile);
+        ItemUtility.getInstance().saveResource("items.yml", false);
+        load(items, itemsfile);
+
+        autosave = config.getBoolean("autosave");
+        done_set_name = messages.getString("messages.done_set_name");
+        done_add_lore = messages.getString("messages.done_add_lore");
+        done_set_lore = messages.getString("messages.done_set_lore");
+        done_del_lore = messages.getString("messages.done_del_lore");
+        invaild_value = messages.getString("messages.invaild_value");
+        not_handing_item = messages.getString("messages.not_handing_item");
+        duplicated_item = messages.getString("messages.duplicated_item");
+        done_create_item = messages.getString("messages.done_create_item");
+
+        Bukkit.getLogger().info("[ItemUtility] All config has been load!");
+    }
+
+    public void save(FileConfiguration config, File file) {
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void save(){
+    public void save() {
         try {
             config.save(configfile);
             messages.save(messagesfile);
@@ -67,13 +73,13 @@ public class Config {
         }
     }
 
-    public FileConfiguration getConfig(){
-        return config;
-    }
-    public FileConfiguration getItemConfig(){
-        return items;
-    }
-    public FileConfiguration getMessageConfig(){
-        return messages;
+    public void load(FileConfiguration config, File file) {
+        try {
+            config.load(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 }

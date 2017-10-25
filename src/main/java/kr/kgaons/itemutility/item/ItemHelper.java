@@ -34,9 +34,13 @@ public class ItemHelper {
         return Integer.parseInt(s.split(":")[1]);
     }
 
+    public static boolean isNotNull(Object o){
+        return o != null;
+    }
+
     // itemname 객체가 이미 있는가?
     public static boolean isDuplicated(String itemname){
-        return ItemUtility.getConfiguration().items.get("items." + itemname) != null;
+        return isNotNull(ItemUtility.getConfiguration().items.get("items." + itemname));
     }
 
     public static void createItem(String itemname){

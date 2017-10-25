@@ -13,7 +13,15 @@ public class MainCommand implements CommandExecutor {
         if(cs instanceof Player){
             Player p = (Player) cs;
             if(args.length > 0){
-                p.sendMessage(ItemUtility.getConfiguration().duplicated_item);
+                if(args[0].equalsIgnoreCase("create")){
+                    if(args.length > 1){
+                        this.createItem(p,args[1]);
+                    }
+                    else sendHelpMessage(p);
+                }
+                if(args[0].equalsIgnoreCase("reload")){
+                    ItemUtility.getConfiguration().save();
+                }
             }
             else sendHelpMessage(p);
         }
@@ -30,12 +38,15 @@ public class MainCommand implements CommandExecutor {
         p.sendMessage(ItemUtility.getPrefix() + "/iu loreset <line> <text>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu addhand <ItemName>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu list");
+        p.sendMessage(ItemUtility.getPrefix() + "/iu reload");
     }
 
     private void createItem(Player p, String itemname){
         if(!ItemHelper.isDuplicated(itemname)){
             ItemHelper.createItem(itemname);
+            ItemUtility.getConfiguration().save();
+            p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().done_create_item);
         }
-        else p.sendMessage(ItemUtility.getConfiguration().duplicated_item);
+        else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().duplicated_item);
     }
 }
