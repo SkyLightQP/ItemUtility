@@ -6,8 +6,4 @@ messages:
   not_handing_item: "§f들고 있는 아이템이 없습니다."
   invaild_value: "§f올바르지 않은 값입니다."
   duplicated_item: "§f이미 존재하는 아이템입니다."
-  not_duplicated_item: "§f존재하지 않는 아이템입니다."
   done_create_item: "§f아이템이 만들어졌습니다."
-  done_delete_item: "§f아이템이 삭제 되었습니다."
-  edit_itemcode: "§f아이템 코드가 변경 되었습니다."
-  error_use_command: "§f올바르지 않은 명령어 사용 방법입니다."

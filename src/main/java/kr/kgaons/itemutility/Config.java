@@ -18,7 +18,7 @@ public class Config {
     public File itemsfile = new File(ItemUtility.getInstance().getDataFolder(), "items.yml");
 
     public File messagesfile = new File(ItemUtility.getInstance().getDataFolder(), "messages.yml");
-
+    ;
     public FileConfiguration messages = null;
     public String done_set_name = null;
     public String done_add_lore = null;
@@ -27,17 +27,14 @@ public class Config {
     public String not_handing_item = null;
     public String invaild_value = null;
     public String duplicated_item = null;
-    public String not_duplicated_item = null;
     public String done_create_item = null;
-    public String done_delete_item = null;
-    public String edit_itemcode = null;
-    public String error_use_command = null;
 
     public Config() {
         config = YamlConfiguration.loadConfiguration(configfile);
         messages = YamlConfiguration.loadConfiguration(messagesfile);
         items = YamlConfiguration.loadConfiguration(itemsfile);
 
+        ItemUtility.getInstance().saveDefaultConfig();
         ItemUtility.getInstance().saveResource("config.yml", false);
         load(config, configfile);
         ItemUtility.getInstance().saveResource("messages.yml", false);
@@ -53,24 +50,16 @@ public class Config {
         invaild_value = messages.getString("messages.invaild_value");
         not_handing_item = messages.getString("messages.not_handing_item");
         duplicated_item = messages.getString("messages.duplicated_item");
-        not_duplicated_item = messages.getString("messages.not_duplicated_item");
         done_create_item = messages.getString("messages.done_create_item");
-        done_delete_item = messages.getString("messages.done_delete_item");
-        edit_itemcode = messages.getString("messages.edit_itemcode");
-        error_use_command = messages.getString("messages.error_use_command");
 
         Bukkit.getLogger().info("[ItemUtility] All config has been load!");
-    }
-
-    public void saveItemConfig(){
-        save(this.items,this.itemsfile);
     }
 
     public void save(FileConfiguration config, File file) {
         try {
             config.save(file);
         } catch (IOException e) {
-            Bukkit.getLogger().throwing("Config","save",e);
+            e.printStackTrace();
         }
     }
 
@@ -80,7 +69,7 @@ public class Config {
             messages.save(messagesfile);
             items.save(itemsfile);
         } catch (IOException e) {
-            Bukkit.getLogger().throwing("Config","save",e);
+            e.printStackTrace();
         }
     }
 
@@ -88,9 +77,9 @@ public class Config {
         try {
             config.load(file);
         } catch (IOException e) {
-            Bukkit.getLogger().throwing("Config","load",e);
+            e.printStackTrace();
         } catch (InvalidConfigurationException e) {
-            Bukkit.getLogger().throwing("Config","load",e);
+            e.printStackTrace();
         }
     }
 }
