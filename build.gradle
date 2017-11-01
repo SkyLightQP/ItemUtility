@@ -6,7 +6,7 @@ apply plugin: 'maven'
 sourceCompatibility = 1.8
 
 jar {
-    destinationDir new File("D:/MinecraftServer/1.12.2/plugins")
+    destinationDir new File("F:/MinecraftServer/1.12.2/plugins")
 }
 
 repositories {

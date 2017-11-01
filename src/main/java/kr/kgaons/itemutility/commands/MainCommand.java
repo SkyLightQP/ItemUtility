@@ -3,6 +3,7 @@ package kr.kgaons.itemutility.commands;
 import kr.kgaons.itemutility.item.ItemHelper;
 import kr.kgaons.itemutility.ItemUtility;
 import kr.kgaons.itemutility.utils.Util;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -71,6 +72,12 @@ public class MainCommand implements CommandExecutor {
                     }
                     else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().error_use_command);
                 }
+                if(args[0].equalsIgnoreCase("hand")){
+                    if(args.length > 1){
+                        this.makeHandItem(p,args[1]);
+                    }
+                    else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().error_use_command);
+                }
                 if(args[0].equalsIgnoreCase("reload")){
                     ItemUtility.getConfiguration().save();
                 }
@@ -115,9 +122,9 @@ public class MainCommand implements CommandExecutor {
         if(ItemHelper.isDuplicated(itemname)){
             if(value.contains(":")) // 데이터 값이 있을 경우 (5:1) (5:0)
                 ItemUtility.getConfiguration().items.set("items." + itemname + ".item", value);
-            else { // 데이터 값이 없을 경우 (5)
+            else  // 데이터 값이 없을 경우 (5)
                 ItemUtility.getConfiguration().items.set("items." + itemname + ".item", value + ":0");
-            }
+
             p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().edit_itemcode);
 
             ItemUtility.getConfiguration().saveItemConfig();
@@ -163,5 +170,12 @@ public class MainCommand implements CommandExecutor {
             ItemUtility.getConfiguration().saveItemConfig();
         }
         else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().not_duplicated_item);
+    }
+
+    private void makeHandItem(Player p, String itemname){
+        if(p.getInventory().getItemInMainHand() != null || p.getInventory().getItemInMainHand().getType() != Material.AIR){
+            ItemHelper.saveItemStackToConfig(p.getInventory().getItemInMainHand(),itemname);
+            p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().done_create_item);
+        } else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().not_handing_item);
     }
 }

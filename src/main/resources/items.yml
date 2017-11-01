@@ -4,4 +4,4 @@ items:
     display: '&fHello, World!'
     lore:
     - '&fHello'
-    - '&World'
+    - '&fWorld'

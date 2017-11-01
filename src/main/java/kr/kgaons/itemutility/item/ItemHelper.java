@@ -4,6 +4,8 @@ import kr.kgaons.itemutility.ItemUtility;
 import kr.kgaons.itemutility.utils.Util;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -29,6 +31,14 @@ public class ItemHelper {
         im.setLore(Util.translatingcolorcodes(lores));
         is.setItemMeta(im);
         return is;
+    }
+
+    public static void saveItemStackToConfig(ItemStack is, String itemname){
+        ItemMeta im = is.getItemMeta();
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".item", is.getTypeId() + ":" + is.getDurability());
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".display", im.getDisplayName() != null ? im.getDisplayName() : "");
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".lore", im.getDisplayName() != null ? im.getDisplayName() : new ArrayList<>());
+        ItemUtility.getConfiguration().saveItemConfig();
     }
 
     public static int getTypeID(String itemname){
