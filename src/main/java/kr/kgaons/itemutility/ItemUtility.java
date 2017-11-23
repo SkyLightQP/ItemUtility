@@ -1,10 +1,11 @@
 package kr.kgaons.itemutility;
 
 import kr.kgaons.itemutility.commands.MainCommand;
+import kr.kgaons.itemutility.gui.ItemListEvent;
+import kr.kgaons.itemutility.gui.ItemListGui;
 import kr.kgaons.itemutility.utils.Util;
 import kr.kgaons.itemutility.utils.WebHook;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -21,8 +22,11 @@ public class ItemUtility extends JavaPlugin {
         WebHook.checkUtilVersion();
         INSTANCE = this;
         getCommand("iu").setExecutor(new MainCommand());
+        getServer().getPluginManager().registerEvents(new ItemListEvent(), this);
 
         config = new Config();
+
+        new ItemListGui();
 
         if(getConfiguration().autosave){
             new BukkitRunnable() {

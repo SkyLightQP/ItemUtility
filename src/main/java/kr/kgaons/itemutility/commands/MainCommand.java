@@ -1,5 +1,6 @@
 package kr.kgaons.itemutility.commands;
 
+import kr.kgaons.itemutility.gui.ItemListGui;
 import kr.kgaons.itemutility.item.ItemHelper;
 import kr.kgaons.itemutility.ItemUtility;
 import kr.kgaons.itemutility.utils.Util;
@@ -77,6 +78,9 @@ public class MainCommand implements CommandExecutor {
                         this.makeHandItem(p,args[1]);
                     }
                     else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().error_use_command);
+                }
+                if(args[0].equalsIgnoreCase("list")){
+                    ItemListGui.getItemListGui().open(p);
                 }
                 if(args[0].equalsIgnoreCase("reload")){
                     ItemUtility.getConfiguration().save();
