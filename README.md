@@ -15,6 +15,5 @@
 
 # 제작자
 - 하늘빛QP(SkyLightQP)
-- http://blog.kgaons.kr
-- http://kgaons.kr
-
+- http://blog.skylightqp.kr
+- http://skylightqp.kr
