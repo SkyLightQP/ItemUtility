@@ -82,8 +82,9 @@ https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.htm
 
 ## 다운로드
 
-GitHub Releases [[https://github.com/SkyLightQP/ItemUtility/releases]]
-DropBox [[https://goo.gl/9kCrbP]]
+GitHub Releases https://github.com/SkyLightQP/ItemUtility/releases
+
+DropBox https://goo.gl/9kCrbP
 
 ## 라이센스
 
