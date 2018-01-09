@@ -16,16 +16,7 @@ import java.util.Set;
 
 public class ItemListGui {
 
-    private static ItemListGui itemlistgui;
     private FileConfiguration config = ItemUtility.getConfiguration().items;
-
-    public static ItemListGui getItemListGui() {
-        return itemlistgui;
-    }
-
-    public ItemListGui(){
-        itemlistgui = this;
-    }
 
     public String getInventoryName() {
         return "아이템 목록";
@@ -43,8 +34,9 @@ public class ItemListGui {
             List<String> lore = im.hasLore() ? im.getLore() : new ArrayList<>();
             lore.add("§f");
             lore.add("§7아이템 이름: " + name);
-            Util.setItem(im.getDisplayName(),is.getType(),is.getDurability(),is.getAmount(),lore,slot,inv);
+            Util.setItem(im.getDisplayName(),is.getType(),is.getDurability(),is.getAmount(),lore,is.getEnchantments(),slot,inv);
             slot++;
+
         }
 
         p.openInventory(inv);

@@ -3,6 +3,7 @@ package kr.kgaons.itemutility.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -11,6 +12,7 @@ import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Util {
 	// Made by SkyLightQP //
@@ -72,5 +74,21 @@ public class Util {
 			strings.add(ChatColor.translateAlternateColorCodes('&', string));
 		}
 		return strings;
+	}
+
+
+	public static void setItem(String display, Material id, int data, int amount, List<String> lore, Map<Enchantment,Integer> enchants, int loc, Inventory inventory) {
+		ItemStack icon = new ItemStack(id, amount, (short) data);
+		ItemMeta iconmeta = icon.getItemMeta();
+		iconmeta.setDisplayName(display);
+		iconmeta.setLore(lore);
+		for(Object enchantitem : enchants.keySet()){
+			for(int level : enchants.values()) {
+				Enchantment enchant = (Enchantment) enchantitem;
+				iconmeta.addEnchant(enchant,level,false);
+			}
+		}
+		icon.setItemMeta(iconmeta);
+		inventory.setItem(loc, icon);
 	}
 }

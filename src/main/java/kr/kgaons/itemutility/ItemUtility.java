@@ -12,8 +12,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class ItemUtility extends JavaPlugin {
     final String VERSION = getDescription().getVersion();
     final String PREFIX = "§6§l[ItemUtility] §f";
-    public static ItemUtility INSTANCE = null;
-    public Config config = null;
+    private static ItemUtility INSTANCE;
+    private static Config config;
 
     @Override
     public void onEnable() {
@@ -25,15 +25,14 @@ public class ItemUtility extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemListEvent(), this);
 
         config = new Config();
-
-        new ItemListGui();
+        getLogger().info("...Load Config");
 
         if(getConfiguration().autosave){
             new BukkitRunnable() {
                 public void run() {
-                    Bukkit.getLogger().info("[ItemUtility] Saving config...");
+                    getLogger().info("Saving data...");
                     getConfiguration().save();
-                    Bukkit.getLogger().info("[ItemUtility] Saved config.");
+                    getLogger().info("Saved data.");
                 }
             }.runTaskTimer(this, 0L, 18000);
         }
@@ -47,7 +46,7 @@ public class ItemUtility extends JavaPlugin {
         return getInstance().PREFIX;
     }
 
-    public static Config getConfiguration() { return getInstance().config; }
+    public static Config getConfiguration() { return config; }
 
     @Override
     public void onDisable() {

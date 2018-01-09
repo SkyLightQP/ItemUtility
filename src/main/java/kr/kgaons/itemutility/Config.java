@@ -10,28 +10,28 @@ import java.io.IOException;
 
 public class Config {
 
-    public File configfile = new File(ItemUtility.getInstance().getDataFolder(), "config.yml");
-    public FileConfiguration config = null;
+    private File configfile = new File(ItemUtility.getInstance().getDataFolder(), "config.yml");
+    private FileConfiguration config;
     public boolean autosave = true;
 
-    public FileConfiguration items = null;
-    public File itemsfile = new File(ItemUtility.getInstance().getDataFolder(), "items.yml");
+    public FileConfiguration items;
+    private File itemsfile = new File(ItemUtility.getInstance().getDataFolder(), "items.yml");
 
-    public File messagesfile = new File(ItemUtility.getInstance().getDataFolder(), "messages.yml");
+    private File messagesfile = new File(ItemUtility.getInstance().getDataFolder(), "messages.yml");
 
-    public FileConfiguration messages = null;
-    public String done_set_name = null;
-    public String done_add_lore = null;
-    public String done_del_lore = null;
-    public String done_set_lore = null;
-    public String not_handing_item = null;
-    public String invaild_value = null;
-    public String duplicated_item = null;
-    public String not_duplicated_item = null;
-    public String done_create_item = null;
-    public String done_delete_item = null;
-    public String edit_itemcode = null;
-    public String error_use_command = null;
+    public FileConfiguration messages;
+    public String done_set_name;
+    public String done_add_lore;
+    public String done_del_lore;
+    public String done_set_lore;
+    public String not_handing_item;
+    public String invaild_value;
+    public String duplicated_item;
+    public String not_duplicated_item;
+    public String done_create_item;
+    public String done_delete_item;
+    public String edit_itemcode;
+    public String error_use_command;
 
     public Config() {
         config = YamlConfiguration.loadConfiguration(configfile);
@@ -58,8 +58,6 @@ public class Config {
         done_delete_item = messages.getString("messages.done_delete_item");
         edit_itemcode = messages.getString("messages.edit_itemcode");
         error_use_command = messages.getString("messages.error_use_command");
-
-        Bukkit.getLogger().info("[ItemUtility] All config has been load!");
     }
 
     public void saveItemConfig(){

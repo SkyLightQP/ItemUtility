@@ -1,19 +1,97 @@
 # ItemUtility
----------------------------
-- 서버의 아이템을 간단하게 관리해보자!
 
+서버의 아이템을 쉽게 관리하자!
 
-# 아이템 추가
-- 명령어를 통해 아이템을 추가할 수 있습니다.
-- 손에 들고 있는 아이템을 추가할 수도 있습니다.
+## 사용방법
+### 명령어
+#### 아이템 추가
 
-# 아이템 관리
-- 명령어를 통해 아이템 제목 수정이 가능합니다.
-- 설명 추가, 설명 제거, 설명 수정이 가능합니다.
-- GUI를 통해 아이템 목록을 보고 아이템을 지급할 수 있습니다.
+```
+/iu create <itemname>
+```
 
+#### 아이템 삭제
 
-# 제작자
-- 하늘빛QP(SkyLightQP)
-- http://blog.skylightqp.kr
-- http://skylightqp.kr
+```
+/iu delete <itemname>
+```
+
+#### 아이템 코드 설정
+
+```
+/iu item <itemname> <code:data>
+```
+
+#### 아이템 표시이름(display) 설정
+
+```
+/iu display <itemname> <text>
+```
+
+#### 아이템 설명 추가
+
+```
+/iu loreadd <itemname> <text>
+```
+
+#### 아이템 설명 제거
+
+```
+/iu loredel <itemname> <line>
+```
+
+#### 아이템 설명 설정
+
+```
+/iu loreset <itemname> <line> <text>
+```
+
+#### 아이템 인첸트 추가
+
+```
+/iu enchant <itemname> <enchant> <power>
+```
+
+#### 손에 들고있는 아이템 추가하기
+
+```
+/iu hand <itemname>
+```
+
+#### 아이템 목록
+
+```
+/iu list
+```
+
+#### 플러그인 리로드
+
+```
+/iu reload
+```
+
+### 펄미션
+
+```
+itemutility.*
+```
+
+### 인첸트 이름 목록
+
+https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+
+## 다운로드
+
+GitHub Releases
+
+DropBox
+
+## 라이센스
+
+ItemUtility 은(는) MIT 라이센스를 따르고 있습니다.
+
+## 제작자
+
+하늘빛QP(SkyLightQP)
+http://skylightqp.kr
+http://blog.skylightqp.kr

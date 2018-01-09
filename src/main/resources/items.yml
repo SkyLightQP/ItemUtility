@@ -5,3 +5,5 @@ items:
     lore:
     - '&fHello'
     - '&fWorld'
+    enchants:
+    - DAMAGE_ALL:1

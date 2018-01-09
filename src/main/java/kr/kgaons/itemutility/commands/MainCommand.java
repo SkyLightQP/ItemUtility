@@ -11,8 +11,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class MainCommand implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender cs, Command cmd, String s, String[] args) {
+        ItemListGui itemlistgui = new ItemListGui();
         if(cs instanceof Player){
             Player p = (Player) cs;
             if(args.length > 0){
@@ -80,7 +82,7 @@ public class MainCommand implements CommandExecutor {
                     else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().error_use_command);
                 }
                 if(args[0].equalsIgnoreCase("list")){
-                    ItemListGui.getItemListGui().open(p);
+                    itemlistgui.open(p);
                 }
                 if(args[0].equalsIgnoreCase("reload")){
                     ItemUtility.getConfiguration().save();
@@ -99,6 +101,7 @@ public class MainCommand implements CommandExecutor {
         p.sendMessage(ItemUtility.getPrefix() + "/iu loreadd <ItemName> <text>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu loredel <ItemName> <line>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu loreset <ItemName> <line> <text>");
+        p.sendMessage(ItemUtility.getPrefix() + "/iu enchant <ItemName> <enchant> <power>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu hand <ItemName>");
         p.sendMessage(ItemUtility.getPrefix() + "/iu list");
         p.sendMessage(ItemUtility.getPrefix() + "/iu reload");
@@ -181,5 +184,15 @@ public class MainCommand implements CommandExecutor {
             ItemHelper.saveItemStackToConfig(p.getInventory().getItemInMainHand(),itemname);
             p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().done_create_item);
         } else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().not_handing_item);
+    }
+
+    private void addItemEnchant(Player p, String itemname, String enchant, String power){
+        if(ItemHelper.isDuplicated(itemname)){
+            ItemHelper.addItemEnchant(itemname,enchant,power);
+            p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().done_del_lore);
+
+            ItemUtility.getConfiguration().saveItemConfig();
+        }
+        else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().not_duplicated_item);
     }
 }

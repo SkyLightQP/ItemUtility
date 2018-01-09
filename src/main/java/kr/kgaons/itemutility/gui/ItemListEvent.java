@@ -1,7 +1,6 @@
 package kr.kgaons.itemutility.gui;
 
 import kr.kgaons.itemutility.item.ItemHelper;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,14 +9,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.List;
-import java.util.Optional;
 
 public class ItemListEvent implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e){
-        String name = ItemListGui.getItemListGui().getInventoryName();
+        ItemListGui itemlistgui = new ItemListGui();
+        String name = itemlistgui.getInventoryName();
         Player p = (Player) e.getView().getPlayer();
         if(e.getInventory().getTitle().equals(name)){
             if(e.getCurrentItem().getType() != Material.AIR || e.getCurrentItem().getType() != null){
