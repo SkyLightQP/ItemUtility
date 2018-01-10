@@ -82,9 +82,9 @@ https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.htm
 
 ## 다운로드
 
-GitHub Releases
+GitHub Releases https://github.com/SkyLightQP/ItemUtility/releases
 
-DropBox
+DropBox https://goo.gl/9kCrbP
 
 ## 라이센스
 
@@ -93,5 +93,6 @@ ItemUtility 은(는) MIT 라이센스를 따르고 있습니다.
 ## 제작자
 
 하늘빛QP(SkyLightQP)
+
 http://skylightqp.kr
 http://blog.skylightqp.kr
