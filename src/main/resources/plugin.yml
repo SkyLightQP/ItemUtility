@@ -1,9 +1,9 @@
 name: ItemUtility
-main: kr.kgaons.itemutility.ItemUtility
-version: 1.0.0
+main: kr.skylightqp.itemutility.ItemUtility
+version: 2.0
 
 commands:
   iu:
-    description: Basic Command.
+    description: ItemUtility admin command.
     permission: itemutility.*
     permission-message: §6§l[ItemUtility] §c당신은 권한을 갖고있지 않습니다!

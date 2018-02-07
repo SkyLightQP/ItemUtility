@@ -1,4 +1,4 @@
-version '1.0.0-SNAPSHOT'
+version '2.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -14,7 +14,7 @@ repositories {
     jcenter()
     maven {
         name 'spigot-repo'
-        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        url "https://hub.spigotmc.org/nexus/content/groups/public/"
     }
 }
 
@@ -23,5 +23,5 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    compile 'org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT'
+    compile 'org.spigotmc:spigot-api:1.12-R0.1-SNAPSHOT'
 }

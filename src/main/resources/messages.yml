@@ -11,3 +11,4 @@ messages:
   done_delete_item: "§f아이템이 삭제 되었습니다."
   edit_itemcode: "§f아이템 코드가 변경 되었습니다."
   error_use_command: "§f올바르지 않은 명령어 사용 방법입니다."
+  done_enchant: "§f인첸트가 추가되었습니다."

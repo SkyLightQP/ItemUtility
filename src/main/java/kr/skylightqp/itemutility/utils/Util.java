@@ -1,4 +1,4 @@
-package kr.kgaons.itemutility.utils;
+package kr.skylightqp.itemutility.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,7 +7,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
@@ -15,16 +14,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Util {
+
 	// Made by SkyLightQP //
-	// http://blog.kgaons.kr //
-	public static final String UTIL_VERSION = "2.5";
+	// http://blog.skylightqp.kr //
 
-	public static void enablePlugin(String PluginName, String version) {
-		Bukkit.getLogger().info("[" + PluginName + "] 플러그인 활성화 v" + version);
-	}
+	public static final String UTIL_VERSION = "2.6";
 
-	public static void disablePlugin(String PluginName, String version) {
-		Bukkit.getLogger().info("[" + PluginName + "] 플러그인 비활성화 v" + version);
+	private Util(){
+		throw new UnsupportedOperationException("This class is SkyLightQP Util class.");
 	}
 
 	public static void setItem(String display, Material id, int data, int amount, List<String> lore, int loc, Inventory inventory) {
@@ -51,6 +48,7 @@ public class Util {
 			Bukkit.getConsoleSender().sendMessage("§6[!] §f온라인으로 바꾸는 것을 권장드립니다.");
 		}
 	}
+
 	public static void sendConsoleMessage(String s) throws NullPointerException{
 		Bukkit.getConsoleSender().sendMessage("§6[!] §f" + s);
 	}
@@ -68,7 +66,7 @@ public class Util {
 		return true;
 	}
 
-	public static List<String> translatingcolorcodes(List<String> list){
+	public static List<String> chatColor(List<String> list){
 		List<String> strings = new ArrayList<>();
 		for (String string : list) {
 			strings.add(ChatColor.translateAlternateColorCodes('&', string));

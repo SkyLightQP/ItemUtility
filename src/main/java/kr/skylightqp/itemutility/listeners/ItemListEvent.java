@@ -1,6 +1,6 @@
-package kr.kgaons.itemutility.gui;
+package kr.skylightqp.itemutility.listeners;
 
-import kr.kgaons.itemutility.item.ItemHelper;
+import kr.skylightqp.itemutility.item.ItemHelper;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,18 +14,16 @@ public class ItemListEvent implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e){
-        ItemListGui itemlistgui = new ItemListGui();
-        String name = itemlistgui.getInventoryName();
+        String name = "아이템 목록";
         Player p = (Player) e.getView().getPlayer();
         if(e.getInventory().getTitle().equals(name)){
-            if(e.getCurrentItem().getType() != Material.AIR || e.getCurrentItem().getType() != null){
-                e.setCancelled(true);
-
+            e.setCancelled(true);
+            if((e.getCurrentItem().getType() != null || e.getCurrentItem().getType() != Material.AIR) && e.getCurrentItem().hasItemMeta()){
                 ItemMeta im = e.getCurrentItem().getItemMeta();
                 if(im.hasLore()){
                     int line = im.getLore().size() - 1;
                     String itemname = im.getLore().get(line).replace("§7아이템 이름: ","");
-                    ItemStack result = ItemHelper.toItemStack(itemname);
+                    ItemStack result = new ItemHelper(itemname).toItemStack();
                     p.getInventory().addItem(result);
                 }
             }

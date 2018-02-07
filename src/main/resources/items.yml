@@ -1,9 +1,9 @@
 items:
-  'HelloWorld':
+  'example':
     item: '1:0'
-    display: '&fHello, World!'
+    display: '&aTest Display'
     lore:
-    - '&fHello'
-    - '&fWorld'
+    - '&fTest Lore 1'
+    - '&eTest Lore 2'
     enchants:
     - DAMAGE_ALL:1

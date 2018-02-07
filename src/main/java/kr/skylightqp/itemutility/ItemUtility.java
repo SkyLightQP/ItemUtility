@@ -1,23 +1,19 @@
-package kr.kgaons.itemutility;
+package kr.skylightqp.itemutility;
 
-import kr.kgaons.itemutility.commands.MainCommand;
-import kr.kgaons.itemutility.gui.ItemListEvent;
-import kr.kgaons.itemutility.gui.ItemListGui;
-import kr.kgaons.itemutility.utils.Util;
-import kr.kgaons.itemutility.utils.WebHook;
+import kr.skylightqp.itemutility.commands.MainCommand;
+import kr.skylightqp.itemutility.listeners.ItemListEvent;
+import kr.skylightqp.itemutility.utils.Util;
+import kr.skylightqp.itemutility.utils.WebHook;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class ItemUtility extends JavaPlugin {
-    final String VERSION = getDescription().getVersion();
     final String PREFIX = "§6§l[ItemUtility] §f";
     private static ItemUtility INSTANCE;
     private static Config config;
 
     @Override
     public void onEnable() {
-        Util.enablePlugin("ItemUtility", VERSION);
         Util.checkOnline();
         WebHook.checkUtilVersion();
         INSTANCE = this;
@@ -25,17 +21,17 @@ public class ItemUtility extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemListEvent(), this);
 
         config = new Config();
-        getLogger().info("...Load Config");
+        getLogger().info(">> Load Config");
 
         if(getConfiguration().autosave){
-            new BukkitRunnable() {
-                public void run() {
-                    getLogger().info("Saving data...");
-                    getConfiguration().save();
-                    getLogger().info("Saved data.");
-                }
-            }.runTaskTimer(this, 0L, 18000);
+            Bukkit.getScheduler().runTaskTimer(this,() -> {
+                getLogger().info("Saving data...");
+                getConfiguration().save();
+                getLogger().info("Saved data.");
+            },0L, 18000L);
         }
+
+        getLogger().info("Enable Plugin! v" + getDescription().getVersion());
     }
 
     public static ItemUtility getInstance() {
@@ -50,8 +46,9 @@ public class ItemUtility extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Util.disablePlugin("ItemUtility", VERSION);
         Util.checkOnline();
         getConfiguration().save();
+        getLogger().info(">> Saved Config.");
+        getLogger().info("Disable Plugin! v" + getDescription().getVersion());
     }
 }

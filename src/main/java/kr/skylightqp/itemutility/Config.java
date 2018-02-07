@@ -1,6 +1,5 @@
-package kr.kgaons.itemutility;
+package kr.skylightqp.itemutility;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,19 +31,55 @@ public class Config {
     public String done_delete_item;
     public String edit_itemcode;
     public String error_use_command;
+    public String done_enchant;
 
     public Config() {
+        ItemUtility.getInstance().saveResource("config.yml", false);
+        ItemUtility.getInstance().saveResource("messages.yml", false);
+        ItemUtility.getInstance().saveResource("items.yml", false);
+
         config = YamlConfiguration.loadConfiguration(configfile);
         messages = YamlConfiguration.loadConfiguration(messagesfile);
         items = YamlConfiguration.loadConfiguration(itemsfile);
 
-        ItemUtility.getInstance().saveResource("config.yml", false);
-        load(config, configfile);
-        ItemUtility.getInstance().saveResource("messages.yml", false);
-        load(messages, messagesfile);
-        ItemUtility.getInstance().saveResource("items.yml", false);
-        load(items, itemsfile);
+        try {
+            config.load(configfile);
+            messages.load(messagesfile);
+            items.load(itemsfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
 
+        loadData();
+    }
+
+    public void saveItemConfig(){
+        save(this.items,this.itemsfile);
+    }
+
+    public void save(FileConfiguration config, File file) {
+        try {
+            config.save(file);
+            loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void save() {
+        try {
+            config.save(configfile);
+            messages.save(messagesfile);
+            items.save(itemsfile);
+            loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadData(){
         autosave = config.getBoolean("autosave");
         done_set_name = messages.getString("messages.done_set_name");
         done_add_lore = messages.getString("messages.done_add_lore");
@@ -58,37 +93,6 @@ public class Config {
         done_delete_item = messages.getString("messages.done_delete_item");
         edit_itemcode = messages.getString("messages.edit_itemcode");
         error_use_command = messages.getString("messages.error_use_command");
-    }
-
-    public void saveItemConfig(){
-        save(this.items,this.itemsfile);
-    }
-
-    public void save(FileConfiguration config, File file) {
-        try {
-            config.save(file);
-        } catch (IOException e) {
-            Bukkit.getLogger().throwing("Config","save",e);
-        }
-    }
-
-    public void save() {
-        try {
-            config.save(configfile);
-            messages.save(messagesfile);
-            items.save(itemsfile);
-        } catch (IOException e) {
-            Bukkit.getLogger().throwing("Config","save",e);
-        }
-    }
-
-    public void load(FileConfiguration config, File file) {
-        try {
-            config.load(file);
-        } catch (IOException e) {
-            Bukkit.getLogger().throwing("Config","load",e);
-        } catch (InvalidConfigurationException e) {
-            Bukkit.getLogger().throwing("Config","load",e);
-        }
+        done_enchant = messages.getString("messages.done_enchant");
     }
 }

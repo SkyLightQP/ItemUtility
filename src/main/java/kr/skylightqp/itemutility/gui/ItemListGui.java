@@ -1,8 +1,8 @@
-package kr.kgaons.itemutility.gui;
+package kr.skylightqp.itemutility.gui;
 
-import kr.kgaons.itemutility.ItemUtility;
-import kr.kgaons.itemutility.item.ItemHelper;
-import kr.kgaons.itemutility.utils.Util;
+import kr.skylightqp.itemutility.ItemUtility;
+import kr.skylightqp.itemutility.item.ItemHelper;
+import kr.skylightqp.itemutility.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -18,25 +18,20 @@ public class ItemListGui {
 
     private FileConfiguration config = ItemUtility.getConfiguration().items;
 
-    public String getInventoryName() {
-        return "아이템 목록";
-    }
-
     public void open(Player p){
-        Inventory inv = Bukkit.createInventory(null, 54, getInventoryName());
+        Inventory inv = Bukkit.createInventory(null, 54,"아이템 목록");
 
         Set<String> list = config.getConfigurationSection("items").getKeys(false);
 
         int slot = 0;
         for(String name : list){
-            ItemStack is = ItemHelper.toItemStack(name);
+            ItemStack is = new ItemHelper(name).toItemStack();
             ItemMeta im = is.getItemMeta();
             List<String> lore = im.hasLore() ? im.getLore() : new ArrayList<>();
             lore.add("§f");
             lore.add("§7아이템 이름: " + name);
             Util.setItem(im.getDisplayName(),is.getType(),is.getDurability(),is.getAmount(),lore,is.getEnchantments(),slot,inv);
             slot++;
-
         }
 
         p.openInventory(inv);

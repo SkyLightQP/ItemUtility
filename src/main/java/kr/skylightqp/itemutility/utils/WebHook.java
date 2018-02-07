@@ -1,4 +1,4 @@
-package kr.kgaons.itemutility.utils;
+package kr.skylightqp.itemutility.utils;
 
 import org.bukkit.Bukkit;
 
@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebHook {
+
+    private WebHook(){
+        throw new UnsupportedOperationException("This class is SkyLightQP WebHook class.");
+    }
+
     public static List<String> getVersion(String url){
         try
         {
