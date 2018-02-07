@@ -1,10 +1,12 @@
 package kr.skylightqp.itemutility;
 
 import kr.skylightqp.itemutility.commands.MainCommand;
+import kr.skylightqp.itemutility.item.ItemHelper;
 import kr.skylightqp.itemutility.listeners.ItemListEvent;
 import kr.skylightqp.itemutility.utils.Util;
 import kr.skylightqp.itemutility.utils.WebHook;
 import org.bukkit.Bukkit;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ItemUtility extends JavaPlugin {
@@ -43,6 +45,10 @@ public class ItemUtility extends JavaPlugin {
     }
 
     public static Config getConfiguration() { return config; }
+
+    public static ItemStack getItemUtilityItem(String name){
+        return new ItemHelper(name).toItemStack();
+    }
 
     @Override
     public void onDisable() {
