@@ -7,7 +7,7 @@
 #### 아이템 추가
 
 ```
-/iu create <itemname>
+/iu create <itemname> <code> <data>
 ```
 
 #### 아이템 삭제
@@ -19,7 +19,7 @@
 #### 아이템 코드 설정
 
 ```
-/iu item <itemname> <code:data>
+/iu item <itemname> <code> <data>
 ```
 
 #### 아이템 표시이름(display) 설정
@@ -83,8 +83,6 @@ https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.htm
 ## 다운로드
 
 GitHub Releases https://github.com/SkyLightQP/ItemUtility/releases
-
-DropBox https://goo.gl/9kCrbP
 
 ## 라이센스
 
