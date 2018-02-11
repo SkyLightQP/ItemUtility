@@ -32,6 +32,7 @@ public class Config {
     public String edit_itemcode;
     public String error_use_command;
     public String done_enchant;
+    public String fail_enchant;
 
     public Config() {
         ItemUtility.getInstance().saveResource("config.yml", false);
@@ -55,8 +56,8 @@ public class Config {
         loadData();
     }
 
-    public void saveItemConfig(){
-        save(this.items,this.itemsfile);
+    public void saveItemConfig() {
+        save(this.items, this.itemsfile);
     }
 
     public void save(FileConfiguration config, File file) {
@@ -70,16 +71,21 @@ public class Config {
 
     public void save() {
         try {
+            config.load(configfile);
+            messages.load(messagesfile);
+            items.load(itemsfile);
             config.save(configfile);
             messages.save(messagesfile);
             items.save(itemsfile);
             loadData();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (InvalidConfigurationException e) {
+            e.printStackTrace();
         }
     }
 
-    private void loadData(){
+    private void loadData() {
         autosave = config.getBoolean("autosave");
         done_set_name = messages.getString("messages.done_set_name");
         done_add_lore = messages.getString("messages.done_add_lore");
@@ -94,5 +100,6 @@ public class Config {
         edit_itemcode = messages.getString("messages.edit_itemcode");
         error_use_command = messages.getString("messages.error_use_command");
         done_enchant = messages.getString("messages.done_enchant");
+        fail_enchant = messages.getString("messages.fail_enchant");
     }
 }

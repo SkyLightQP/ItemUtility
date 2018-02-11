@@ -81,18 +81,18 @@ public class ItemHelper {
     }
 
     public void setDisplay(String display){
-        ItemUtility.getConfiguration().items.set("items." + itemname + ".display", display);
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".display", "&f" + display);
     }
 
     public void addLore(String value){
         List<String> lores = ItemUtility.getConfiguration().items.getStringList("items." + itemname + ".lore");
-        lores.add(value);
+        lores.add("&f" + value);
         ItemUtility.getConfiguration().items.set("items." + itemname + ".lore",lores);
     }
 
     public void setLore(String value, int line){
         List<String> lores = ItemUtility.getConfiguration().items.getStringList("items." + itemname + ".lore");
-        lores.set(line,value);
+        lores.set(line,"&f" + value);
         ItemUtility.getConfiguration().items.set("items." + itemname + ".lore",lores);
     }
 

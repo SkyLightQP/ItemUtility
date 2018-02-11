@@ -20,7 +20,7 @@ public class CreateHelper {
 
     public void createDefaultItem(){
         ItemUtility.getConfiguration().items.set("items." + itemname + ".item", "1:0");
-        ItemUtility.getConfiguration().items.set("items." + itemname + ".display", "&fHello, World");
+        ItemUtility.getConfiguration().items.set("items." + itemname + ".display", "&fExample");
         ItemUtility.getConfiguration().items.set("items." + itemname + ".lore", new ArrayList<>());
         ItemUtility.getConfiguration().items.set("items." + itemname + ".enchants",new ArrayList<>());
     }
@@ -35,9 +35,13 @@ public class CreateHelper {
         ItemUtility.getConfiguration().saveItemConfig();
     }
 
-    public void createItem(Player p){
+    public void createItem(Player p, String id, String data){
         if(!PluginUtil.isDuplicated(itemname)){
             createDefaultItem();
+            if(data != null)
+                ItemUtility.getConfiguration().items.set("items." + itemname + ".item", id + ":0");
+            else
+                ItemUtility.getConfiguration().items.set("items." + itemname + ".item", id + ":" + data);
             ItemUtility.getConfiguration().saveItemConfig();
             p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().done_create_item);
         }
@@ -53,12 +57,13 @@ public class CreateHelper {
         else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().not_duplicated_item);
     }
 
-    public void editItemCode(Player p, String value){
+    public void editItemCode(Player p, String value, String data){
         if(PluginUtil.isDuplicated(itemname)){
-            if(value.contains(":")) // 데이터 값이 있을 경우 (5:1) (5:0)
-                ItemUtility.getConfiguration().items.set("items." + itemname + ".item", value);
-            else  // 데이터 값이 없을 경우 (5)
+            if(data != null)
                 ItemUtility.getConfiguration().items.set("items." + itemname + ".item", value + ":0");
+            else
+                ItemUtility.getConfiguration().items.set("items." + itemname + ".item", value + ":" + data);
+
 
             p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().edit_itemcode);
 

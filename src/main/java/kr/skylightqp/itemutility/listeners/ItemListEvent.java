@@ -18,7 +18,7 @@ public class ItemListEvent implements Listener {
         Player p = (Player) e.getView().getPlayer();
         if(e.getInventory().getTitle().equals(name)){
             e.setCancelled(true);
-            if((e.getCurrentItem().getType() != null || e.getCurrentItem().getType() != Material.AIR) && e.getCurrentItem().hasItemMeta()){
+            if(e.getCurrentItem() != null && (e.getCurrentItem().getType() != null || e.getCurrentItem().getType() != Material.AIR) && e.getCurrentItem().hasItemMeta()){
                 ItemMeta im = e.getCurrentItem().getItemMeta();
                 if(im.hasLore()){
                     int line = im.getLore().size() - 1;

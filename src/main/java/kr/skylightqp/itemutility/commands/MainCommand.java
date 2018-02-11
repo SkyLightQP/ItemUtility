@@ -7,6 +7,7 @@ import kr.skylightqp.itemutility.utils.Util;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -25,13 +26,10 @@ public class MainCommand implements CommandExecutor {
                 }
                 if (args[0].equalsIgnoreCase("reload")) {
                     ItemUtility.getConfiguration().save();
+                    p.sendMessage(ItemUtility.getPrefix() + "리로드 완료.");
                     return true;
                 }
                 if (args.length > 1) {
-                    if (args[0].equalsIgnoreCase("create")) {
-                        new CreateHelper(args[1]).createItem(p);
-                        return true;
-                    }
                     if (args[0].equalsIgnoreCase("delete")) {
                         new CreateHelper(args[1]).deleteItem(p);
                         return true;
@@ -45,10 +43,6 @@ public class MainCommand implements CommandExecutor {
                     return true;
                 }
                 if (args.length > 2) {
-                    if (args[0].equalsIgnoreCase("item")) {
-                        new CreateHelper(args[1]).editItemCode(p, args[2]);
-                        return true;
-                    }
                     if (args[0].equalsIgnoreCase("display")) {
                         String name = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
                         new CreateHelper(args[1]).setItemDisplay(p, name);
@@ -74,6 +68,14 @@ public class MainCommand implements CommandExecutor {
                     return true;
                 }
                 if (args.length > 3) {
+                    if (args[0].equalsIgnoreCase("create")) {
+                        new CreateHelper(args[1]).createItem(p, args[2], args[3]);
+                        return true;
+                    }
+                    if (args[0].equalsIgnoreCase("item")) {
+                        new CreateHelper(args[1]).editItemCode(p, args[2], args[3]);
+                        return true;
+                    }
                     if (args[0].equalsIgnoreCase("loreset")) {
                         if (Util.isInteger(args[2], true)) {
                             try {
@@ -86,9 +88,12 @@ public class MainCommand implements CommandExecutor {
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("enchant")) {
-                        if (Util.isInteger(args[3], true)) {
-                            new CreateHelper(args[1]).addItemEnchant(p, args[2], args[3]);
-                        } else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().invaild_value);
+                        if(Enchantment.getByName(args[2]) != null) {
+                            if (Util.isInteger(args[3], true)) {
+                                new CreateHelper(args[1]).addItemEnchant(p, args[2], args[3]);
+                            } else
+                                p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().invaild_value);
+                        }
                         return true;
                     }
                 } else {
@@ -104,9 +109,9 @@ public class MainCommand implements CommandExecutor {
     }
 
     private void sendHelpMessage(Player p) {
-        p.sendMessage(ItemUtility.getPrefix() + "§7/iu create <itemname>");
+        p.sendMessage(ItemUtility.getPrefix() + "§7/iu create <itemname> <code> <data>");
         p.sendMessage(ItemUtility.getPrefix() + "§7/iu delete <itemname>");
-        p.sendMessage(ItemUtility.getPrefix() + "§7/iu item <itemname> <code:data>");
+        p.sendMessage(ItemUtility.getPrefix() + "§7/iu item <itemname> <code> <data>");
         p.sendMessage(ItemUtility.getPrefix() + "§7/iu display <itemname> <text>");
         p.sendMessage(ItemUtility.getPrefix() + "§7/iu loreadd <itemname> <text>");
         p.sendMessage(ItemUtility.getPrefix() + "§7/iu loredel <itemname> <line>");

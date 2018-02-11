@@ -1,6 +1,6 @@
 name: ItemUtility
 main: kr.skylightqp.itemutility.ItemUtility
-version: 2.1
+version: 2.2
 
 commands:
   iu:
