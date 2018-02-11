@@ -80,6 +80,14 @@ itemutility.*
 
 https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
 
+## API
+
+ItemUtility에서는 ItemStack으로 반환해주는 API를 제공하고 있습니다.
+
+```
+ItemUtility.getItemUtilityItem(String itemname)
+```
+
 ## 다운로드
 
 GitHub Releases https://github.com/SkyLightQP/ItemUtility/releases
