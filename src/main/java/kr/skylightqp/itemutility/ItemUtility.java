@@ -30,7 +30,7 @@ public class ItemUtility extends JavaPlugin {
                 getLogger().info("Saving data...");
                 getConfiguration().save();
                 getLogger().info("Saved data.");
-            },0L, 18000L);
+            },10L, 18000L);
         }
 
         getLogger().info("Enable Plugin! v" + getDescription().getVersion());

@@ -33,6 +33,8 @@ public class Config {
     public String error_use_command;
     public String done_enchant;
     public String fail_enchant;
+    public String first_page;
+    public String last_page;
 
     public Config() {
         ItemUtility.getInstance().saveResource("config.yml", false);
@@ -101,5 +103,7 @@ public class Config {
         error_use_command = messages.getString("messages.error_use_command");
         done_enchant = messages.getString("messages.done_enchant");
         fail_enchant = messages.getString("messages.fail_enchant");
+        first_page = messages.getString("messages.first_page");
+        last_page = messages.getString("messages.last_page");
     }
 }

@@ -13,3 +13,5 @@ messages:
   error_use_command: "§c올바르지 않은 명령어 사용 방법입니다."
   done_enchant: "§f인첸트가 추가되었습니다."
   fail_enchant: "§c존재하지 않는 인첸트입니다."
+  first_page: "§c첫번째 페이지입니다."
+  last_page: "§c마지막 페이지입니다."

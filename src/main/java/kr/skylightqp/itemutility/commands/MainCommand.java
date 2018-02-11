@@ -21,7 +21,7 @@ public class MainCommand implements CommandExecutor {
             Player p = (Player) cs;
             if (args.length > 0) {
                 if (args[0].equalsIgnoreCase("list")) {
-                    itemlistgui.open(p);
+                    itemlistgui.open(p,1);
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("reload")) {
@@ -94,6 +94,7 @@ public class MainCommand implements CommandExecutor {
                             } else
                                 p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().invaild_value);
                         }
+                        else p.sendMessage(ItemUtility.getPrefix() + ItemUtility.getConfiguration().fail_enchant);
                         return true;
                     }
                 } else {
